@@ -1,0 +1,18 @@
+help([[
+This module sets the PATH and LD_LIBRARY_PATH variable for cuda {{ cuda_version }}
+]])
+
+local topdir = "{{ toolkit_install_folder }}/cuda-{{ cuda_version }}"
+prepend_path("PATH", pathJoin(topdir, "bin"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(topdir, "lib64"))
+
+whatis("Name         : cuda")
+whatis("Version      : {{ cuda_version }}")
+whatis("Category     : Toolkit")
+whatis("Description  : cuda {{ cuda_version }} enviroment")
+whatis("URL          : https://developer.nvidia.com/cuda-toolkit/ ")
+whatis("Installed on : {{ ansible_date_time.date }} ")
+whatis("Modified on  : --- ")
+whatis("Installed by : YOUR NAME")
+
+family("cuda")

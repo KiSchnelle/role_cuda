@@ -1,0 +1,27 @@
+---
+- name: Download cuda toolkit runfile.
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ download_folder }}/cuda_runfile.run"
+  with_items:
+    - { url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run, version: 10.2 }
+    - { url: http://developer.download.nvidia.com/compute/cuda/11.0.2/local_installers/cuda_11.0.2_450.51.05_linux.run, version: 11.0 }
+    - { url: https://developer.download.nvidia.com/compute/cuda/11.2.0/local_installers/cuda_11.2.0_460.27.04_linux.run, version: 11.2}
+    - { url: https://developer.download.nvidia.com/compute/cuda/11.3.0/local_installers/cuda_11.3.0_465.19.01_linux.run, version: 11.3}
+    - { url: https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda_11.4.0_470.42.01_linux.run, version: 11.4}
+  when: item.version == cuda_version
+
+
+- name: Install cuda toolkit.
+  ansible.builtin.shell:
+    cmd: "./cuda_runfile.run -- silent --toolkit --toolkitpath={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --defaultroot={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --no-man-page --override"
+
+
+- name: Copy modulefile.
+  ansible.builtin.template:
+    src: cuda.lua.j2
+    dest: "{{ modulefile_folder }}/cuda-{{ cuda_version }}.lua"
+    owner: ansible
+    group: ansible
+    mode: 0775
+  when: create_modulefile and modulefile_folder is defined
