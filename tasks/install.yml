@@ -3,6 +3,7 @@
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ download_folder }}/cuda_runfile.run"
+    mode: a+x
   with_items:
     - { url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run, version: 10.2 }
     - { url: http://developer.download.nvidia.com/compute/cuda/11.0.2/local_installers/cuda_11.0.2_450.51.05_linux.run, version: 11.0 }
