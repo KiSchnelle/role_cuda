@@ -15,7 +15,7 @@
 
 - name: Install cuda toolkit.
   ansible.builtin.shell:
-    cmd: "./cuda_runfile.run -- silent --toolkit --toolkitpath={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --defaultroot={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --no-man-page --override"
+    cmd: "./cuda_runfile.run --silent --toolkit --toolkitpath={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --defaultroot={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --no-man-page --override"
     chdir: "{{ download_folder }}"
 
 - name: Copy modulefile.
