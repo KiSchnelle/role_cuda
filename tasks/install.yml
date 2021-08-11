@@ -1,4 +1,10 @@
 ---
+- name: Create download folder.
+  ansible.builtin.file:
+    path: "{{ download_folder }}"
+    state: directory
+    mode: 0600
+
 - name: Download cuda toolkit runfile.
   ansible.builtin.get_url:
     url: "{{ item.url }}"

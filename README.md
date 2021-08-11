@@ -1,4 +1,4 @@
-Role Name
+Ansible Role for Installing Cuda on CentOS 7,8 and Ubuntu 20
 =========
 
 A brief description of the role goes here.
@@ -30,9 +30,9 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+Apache License 2.0
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2021 by Kilian Schnelle, part of the Department of Structure Biology at the University of Osnabrueck.
