@@ -1,0 +1,20 @@
+#%Module#
+##
+## Software name: cuda
+## Module name: "cuda {{ cuda_version }}"
+## Version: "{{ cuda_version }}"
+## Installed on: "{{ ansible_date_time.date }}"
+## Responsible: "{{ ansible_user }}"
+## Planned update: None
+##
+module-whatis "Environment variables for cuda {{ cuda_version }}"
+module-whatis "Provide cuda/{{ cuda_version }} for building packages"
+
+proc ModulesHelp { } {
+    puts stderr "Provides cuda, version {{ cuda_version }}"
+}
+
+setenv CUDA_HOME "{{ toolkit_install_folder }}/cuda-{{ cuda_version }}"
+prepend-path PATH "{{ toolkit_install_folder }}/cuda-{{ cuda_version }}"/bin
+prepend-path PKG_CONFIG_PATH "{{ toolkit_install_folder }}/cuda-{{ cuda_version }}"/pkgconfig
+prepend-path LD_LIBRARY_PATH "{{ toolkit_install_folder }}/cuda-{{ cuda_version }}"/lib64
