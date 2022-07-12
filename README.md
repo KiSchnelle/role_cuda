@@ -20,7 +20,7 @@ Specified values in vars/main.yml take priority.
 | cuda_version              | str       | 11.5                                      | Cuda version that will be installed               |
 | download_folder           | str       | /sbdata/software/download                 | Path of folder for downling run file              |
 | toolkit_install_folder    | str       | /sbdata/software/apps                     | Path for folder to install toolkit in             |
-| modulefile_folder         | bool      | /sbdata/software/apps/modulefiles/Core    | Path for containing modulefile if wanted          |
+| modulefile_folder         | str.      | /sbdata/software/apps/modulefiles/Core    | Path for containing modulefile if wanted          |
 | create_lua_modulefile     | bool      | true                                      | True will create a lua modulefile                 |
 | create_tcl_modulefile     | bool      | false                                     | True will create a tcl modulefile                 |
 
