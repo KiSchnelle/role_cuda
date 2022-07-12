@@ -1,31 +1,49 @@
 Ansible Role for Installing Cuda on CentOS 7,8 and Ubuntu 20
 =========
 
-A brief description of the role goes here.
+This will download and install cuda toolkit to the specified folders. If specified it also creates a modulefile in lua or tcl.
+For compatible versions please check the defaults/main.yml
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Working internet connection for download of the cuda runfile.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variables can be changed in defaults/main.yml or vars/main.yml.
+Specified values in vars/main.yml take priority.
+
+| Variable                  | Type      | Default                                   | Comment                                           |
+| ------------------------- |:---------:|:-----------------------------------------:|:-------------------------------------------------:|
+| cuda_version              | str       | 11.5                                      | Cuda version that will be installed               |
+| download_folder           | str       | /sbdata/software/download                 | Path of folder for downling run file              |
+| toolkit_install_folder    | str       | /sbdata/software/apps                     | Path for folder to install toolkit in             |
+| modulefile_folder         | bool      | /sbdata/software/apps/modulefiles/Core    | Path for containing modulefile if wanted          |
+| create_lua_modulefile     | bool      | true                                      | True will create a lua modulefile                 |
+| create_tcl_modulefile     | bool      | false                                     | True will create a tcl modulefile                 |
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No ansible collections needed.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+To run it type for example:
+```
+ansible-playbook run.yml --user=$ANSIBLE_USER --extra-vars "ansible_sudo_pass=$ANSIBLE_USER_PASSWORD" >> role_cuda_log.txt
+```
+or inside a playbook:
+```
+- hosts: localhost
+  become: True
+  roles:
+    - role_slurm
+```
 
 License
 -------
