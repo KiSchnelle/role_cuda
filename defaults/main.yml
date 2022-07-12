@@ -5,4 +5,5 @@ cuda_version: 11.5
 download_folder: /sbdata/software/download
 toolkit_install_folder: /sbdata/software/apps
 modulefile_folder: /sbdata/software/apps/modulefiles/Core
-create_modulefile: true
+create_lua_modulefile: true
+create_tcl_modulefile: false
