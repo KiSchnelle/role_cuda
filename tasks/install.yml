@@ -90,11 +90,20 @@
     cmd: "./cuda_runfile.run --silent --toolkit --toolkitpath={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --defaultroot={{ toolkit_install_folder }}/cuda-{{ cuda_version }} --no-man-page --override"
     chdir: "{{ download_folder }}"
 
-- name: Copy modulefile.
+- name: Copy lua modulefile.
   ansible.builtin.template:
     src: cuda.lua.j2
     dest: "{{ modulefile_folder }}/cuda-{{ cuda_version }}.lua"
     owner: ansible
     group: ansible
     mode: 0775
-  when: create_modulefile and modulefile_folder is defined
+  when: create_lua_modulefile and modulefile_folder is defined
+
+- name: Copy tcl modulefile.
+  ansible.builtin.template:
+    src: cuda.j2
+    dest: "{{ modulefile_folder }}/cuda-{{ cuda_version }}.lua"
+    owner: ansible
+    group: ansible
+    mode: 0775
+  when: create_tcl_modulefile and modulefile_folder is defined
